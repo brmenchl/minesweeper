@@ -1,3 +1,5 @@
+import * as gridHelper from '../helpers/gridHelper';
+
 export const SET_BOMBS = 'set_bombs';
 export const SET_CELLS = 'set_cells';
 export const SET_CELL_STATE = 'set_cell_state';
@@ -14,28 +16,18 @@ const DEFAULT_CELL = {hasBomb: false, state: DEFAULT_STATE, adjacentBombs: 0};
 
 function getAdjacentBombs(index, bombs, width) {
   let adjacentBombCount = 0;
-  if(index >= width &&
-    bombs.indexOf(index - width) !== -1)
-  { // up
-    adjacentBombCount++;
-  }
-  if(index < (Math.pow(width,2) - width) &&
-    bombs.indexOf(index + width) !== -1)
-  { // down
-    adjacentBombCount++;
-  }
-  if(index > 0 &&
-    index % width !== 0 &&
-    bombs.indexOf(index - 1) !== -1)
-  { // left
-    adjacentBombCount++;
-  }
-  if(index < (Math.pow(width,2) - 1) && 
-    (index+1) % width !== 0 && 
-    bombs.indexOf(index + 1) !== -1) 
-  { // right
-    adjacentBombCount++;
-  }
+
+  const upIndex = gridHelper.upIndex(index, width)
+  if(typeof upIndex !== 'undefined' && bombs.indexOf(upIndex) != -1) adjacentBombCount++;
+
+  const downIndex = gridHelper.downIndex(index, width)
+  if(typeof downIndex !== 'undefined' && bombs.indexOf(downIndex) != -1) adjacentBombCount++;
+
+  const leftIndex = gridHelper.leftIndex(index, width)
+  if(typeof leftIndex !== 'undefined' && bombs.indexOf(leftIndex) != -1) adjacentBombCount++;
+
+  const rightIndex = gridHelper.rightIndex(index, width)
+  if(typeof rightIndex !== 'undefined' && bombs.indexOf(rightIndex) != -1) adjacentBombCount++;
   return adjacentBombCount;
 }
 

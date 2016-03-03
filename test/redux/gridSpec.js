@@ -50,9 +50,9 @@ describe('gridReducer', () => {
       const newState = reducer(state, {type: SET_BOMBS, payload: {cells:[0,2]}});
       newState.should.deep.equal({
         cells: [
-          {hasBomb: true},
+          {hasBomb: true, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 1},
-          {hasBomb: true},
+          {hasBomb: true, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 1}
         ],
         width: 2,
@@ -70,9 +70,9 @@ describe('gridReducer', () => {
           {hasBomb: false, adjacentBombs: 1},  // X X 2
           {hasBomb: false, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 2},
-          {hasBomb: true},
-          {hasBomb: true},
-          {hasBomb: true},
+          {hasBomb: true, adjacentBombs: 0},
+          {hasBomb: true, adjacentBombs: 1},
+          {hasBomb: true, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 2}
         ],
         width: 3,
@@ -89,9 +89,9 @@ describe('gridReducer', () => {
           {hasBomb: false, adjacentBombs: 1},  // X X 2
           {hasBomb: false, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 2},
-          {hasBomb: true},
-          {hasBomb: true},
-          {hasBomb: true},
+          {hasBomb: true, adjacentBombs: 0},
+          {hasBomb: true, adjacentBombs: 1},
+          {hasBomb: true, adjacentBombs: 1},
           {hasBomb: false, adjacentBombs: 2}
         ],
         width: 3,

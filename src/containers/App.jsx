@@ -9,12 +9,7 @@ import GameStateOverlay from '../components/GameStateOverlay';
 import Scoreboard from '../components/Scoreboard';
 
 function mapStateToProps(state) {
-  return {
-    cells: state.grid.cells,
-    width: state.grid.width,
-    gameState: state.grid.gameState,
-    cellsLeft: state.grid.cellsLeft
-  };
+  return {...state.grid};
 }
 
 function mapDispatchToProps(dispatch) {
